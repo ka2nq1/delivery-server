@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const CartItem = require('../models/CartItem');
+const { v4: uuidv4 } = require('uuid');
 
 router.post('/add', async (req, res) => {
     try {
         const id = req.body.id;
         const product = req.body.product;
-        const sessionId = req.body.sessionId;
+        const sessionId = req.body.sessionId || uuidv4();
 
         const cartItem = new CartItem({ id, sessionId, product: { ...product, amount: 1 } });
         await cartItem.save();
