@@ -5,7 +5,7 @@ const Shop = require('../models/Shop');
 router.get('/', async (req, res) => {
     try {
         const shops = await Shop.find();
-        res.json({ shops );
+        res.json({ shops });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
